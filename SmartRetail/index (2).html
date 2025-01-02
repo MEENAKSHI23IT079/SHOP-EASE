@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snack Categories</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+    }
+
+    .container {
+      width: 370px;
+      height: 90vh;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .header {
+      background: #007bff;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .search-bar {
+      background: #f1f1f1;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .search-bar input {
+      border: none;
+      background: none;
+      flex: 1;
+      outline: none;
+      padding-left: 5px;
+    }
+
+    .category-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+    }
+
+    .category-item {
+      background: #f9f9f9;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .category-item button {
+      padding: 10px 15px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .category-item button:hover {
+      background: #0056b3;
+    }
+
+    fieldset {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin: 10px;
+      padding: 10px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 10px;
+    }
+
+    .footer button {
+      background: none;
+      border: none;
+      font-size: 14px;
+      color: #007bff;
+      cursor: pointer;
+    }
+
+    .footer button:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">Snack Categories</div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search snacks..." id="searchInput" onkeyup="filterCategories()">
+    </div>
+
+    <!-- Snack Categories -->
+    <div class="category-list" id="categoryList">
+      <div class="category-item">
+        <span>Chips</span>
+        <button onclick="showProductList('chips')">View</button>
+      </div>
+      <div class="category-item">
+        <span>Cookies</span>
+        <button onclick="showProductList('cookies')">View</button>
+      </div>
+      <div class="category-item">
+        <span>Candy</span>
+        <button onclick="showProductList('candy')">View</button>
+      </div>
+      <div class="category-item">
+        <span>Juices</span>
+        <button onclick="showProductList('juices')">View</button>
+      </div>
+      <div class="category-item">
+        <span>Nuts</span>
+        <button onclick="showProductList('nuts')">View</button>
+      </div>
+    </div>
+
+    <!-- Footer Buttons inside Fieldset -->
+    <fieldset>
+      <legend>Navigation</legend>
+      <div class="footer">
+        <button onclick="location.href = 'smart_retail.html';">Home</button>
+        <button onclick="location.href = 'smart_retail_items.html';">Items</button>
+        <button onclick="location.href = 'smart_retail_settings.html';">Settings</button>
+        <button onclick="location.href = 'smart_retail_history.html';">History</button>
+        <button onclick="location.href = 'smart_retail_categories.html';">Categories</button>
+      </div>
+    </fieldset>
+  </div>
+</body>
+</html>

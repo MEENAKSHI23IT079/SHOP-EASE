@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-group label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .btn {
+      width: 100%;
+      padding: 10px;
+      background: #4cafeb;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background: #3595cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Signup</h2>
+    <form id="signup-form" action="signup.php" method="POST">
+      <div class="form-group">
+        <label for="user-id">User ID</label>
+        <input type="text" id="user-id" name="user_id" placeholder="Choose your User ID" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Create a Password" required>
+      </div>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm your Password" required>
+      </div>
+      <div class="form-group">
+        <label for="user-type">User Type</label>
+        <select id="user-type" name="user_type" required>
+          <option value="" disabled selected>Select User Type</option>
+          <option value="customer">Customer</option>
+          <option value="vendor">Vendor</option>
+        </select>
+      </div>
+      <a href="login.html"><button type="submit" class="btn">Signup</button></a>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('signup-form');
+      const passwordInput = document.getElementById('password');
+      const confirmPasswordInput = document.getElementById('confirm-password');
+      const userTypeInput = document.getElementById('user-type');
+
+      form.addEventListener('submit', function (event) {
+        const password = passwordInput.value.trim();
+        const confirmPassword = confirmPasswordInput.value.trim();
+
+        if (password !== confirmPassword) {
+          event.preventDefault();
+          alert('Passwords do not match.');
+          return;
+        }
+
+        const userType = userTypeInput.value;
+        if (!userType) {
+          event.preventDefault();
+          alert('Please select a user type.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

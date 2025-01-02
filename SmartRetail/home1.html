@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Retail - Homepage</title>
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #f0f8ff);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header Styles */
+    header {
+      background: linear-gradient(45deg, #ff7f50, #ff4500);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	text-alignment:center;
+    }
+
+    header .title {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    header input {
+      padding: 8px 12px;
+      width: 220px;
+      border-radius: 25px;
+      border: none;
+      transition: width 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    header input:focus {
+      width: 320px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      outline: none;
+    }
+
+    /* Navigation Tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      background: linear-gradient(to right, #6a5acd, #483d8b);
+      padding: 10px 0;
+    }
+
+    .tabs ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+    }
+
+    .tabs ul li {
+      color: white;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+      position: relative;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .tabs ul li:hover {
+      background-color: #ff6347;
+      transform: scale(1.1);
+    }
+
+    /* Main Content */
+    .main {
+      padding: 20px;
+      flex: 1;
+    }
+
+/* Profile Flashcard */
+.flashcard.profile-flashcard {
+  display: none;
+  position: absolute;
+  top: 60px; /* Adjust this based on your layout */
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  color: #333;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 0.9rem;
+  text-align: left;
+  width: 250px;
+  transition: all 0.3s ease;
+}
+
+
+    .recommendation-section h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #483d8b;
+      font-size: 2rem;
+    }
+
+    .recommendations {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .recommendation {
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .recommendation:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .recommendation img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .recommendation img:hover {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+    }
+
+    .recommendation p {
+      font-size: 1.1rem;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #ff7f50, #ff4500);
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      position: relative;
+      transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 60px; /* Adjust this based on the header height */
+    right: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 1000;
+    width: 200px;
+    text-align: left;
+  }
+
+  .profile-dropdown p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #333;
+  }
+
+  .profile-dropdown p strong {
+    color: #483d8b;
+  }
+
+    .btn:hover {
+      background: linear-gradient(45deg, #ff6347, #ff0000);
+      box-shadow: 0 6px 12px rgba(255, 99, 71, 0.7);
+    }
+
+    /* Flashcard */
+    .flashcard {
+      display: none;
+      position: absolute;
+      bottom: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      color: #333;
+      padding: 12px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      font-size: 0.9rem;
+      text-align: left;
+      width: 250px;
+      max-height: 200px;
+      overflow-y: auto;
+      transition: all 0.3s ease;
+    }
+
+/* Welcome Message Styles */
+.welcome-message {
+  background-color: #ff7f50;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+}
+
+.quote {
+  display: inline-block;
+  animation: scroll-quote 15s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes scroll-quote {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+    footer {
+      background: linear-gradient(45deg, #6a5acd, #483d8b);
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+    }
+
+    footer .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    footer .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    footer .social-icons a:hover {
+      transform: scale(1.3);
+      color: #ff6347;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title">SHOP EASE</div>
+    <input type="text" placeholder="Search for products..." aria-label="Search for products">
+  </header>
+
+  <nav class="tabs">
+    <ul>
+      <a href="login.html"><li>Login</li></a>
+      <li class="profile-tab">Profile</li>
+      <a href="insert1.php"><li>Update Stock</li></a>
+      <a href="display.php"><li>View products</li></a>
+      <a href="about.html"><li>About</li></a>
+    </ul>
+  </nav>
+
+<div class="profile-dropdown">
+  <p><strong>User Profile</strong></p>
+  <p>Name: ABC</p>
+  <p>Email: abc@gmail.com</p>
+  <p>Role: Vendor</p>
+</div>
+
+<br><br>
+<section class="welcome-message">
+  <p><span class="quote">"Welcome to ShopEase!"</span></p>
+</section>
+
+
+  <main class="main">
+    <section class="recommendation-section">
+      <h2>Products available</h2>
+      <div class="recommendations">
+        <div class="recommendation" data-product="Good Day">
+          <img src="Biscuit.jpg" alt="Biscuit">
+          <p>Good Day</p>
+          <button class="btn">View More</button>
+          <div class="flashcard">
+            <p><strong>Similar Products:</strong></p>
+            <ul>
+              <li>Digestive Biscuits</li>
+              <li>Britannia Treat</li>
+              <li>Hide & Seek</li>
+            </ul>
+          </div>
+        </div>
+        <div class="recommendation" data-product="Mazza">
+          <img src="Mazza.jpg" alt="Mazza Drink">
+          <p>Mazza</p>
+          <button class="btn">View More</button>
+          <div class="flashcard">
+            <p><strong>Similar Products:</strong></p>
+            <ul>
+              <li>Minute Maid</li>
+              <li>Fanta</li>
+              <li>Sprite</li>
+            </ul>
+          </div>
+        </div>
+        <div class="recommendation" data-product="Oreo">
+          <img src="Oreo.jpg" alt="Oreo Cookies">
+          <p>Oreo</p>
+          <button class="btn">View More</button>
+          <div class="flashcard">
+            <p><strong>Similar Products:</strong></p>
+            <ul>
+              <li>Choco Pie</li>
+              <li>Treat</li>
+              <li>Britannia Good Day</li>
+            </ul>
+          </div>
+        </div>
+        <div class="recommendation" data-product="Dairy Milk">
+          <img src="Dairymilk.jpg" alt="Dairy Milk Chocolate">
+          <p>Dairy Milk</p>
+          <button class="btn">View More</button>
+          <div class="flashcard">
+            <p><strong>Similar Products:</strong></p>
+            <ul>
+              <li>Perk</li>
+              <li>5 Star</li>
+              <li>Galaxy</li>
+            </ul>
+          </div>
+        </div>
+        <div class="recommendation" data-product="Kurkure">
+          <img src="Kurkure.jpg" alt="Kurkure Snacks">
+          <p>Kurkure</p>
+          <button class="btn">View More</button>
+          <div class="flashcard">
+            <p><strong>Similar Products:</strong></p>
+            <ul>
+              <li>Lay’s</li>
+              <li>Pringles</li>
+              <li>Chipsy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<div class="social-icons">
+      <a href="#" aria-label="Visit our Facebook"><i class="fa fa-facebook"></i></a>
+      <a href="#" aria-label="Visit our Twitter"><i class="fa fa-twitter"></i></a>
+      <a href="#" aria-label="Visit our Instagram"><i class="fa fa-instagram"></i></a>
+    </div>
+  <footer>
+
+    <p>&copy; 2024 Smart Retail. All Rights Reserved.
+<div class="social-icons">
+  <a href="#" aria-label="Visit our Facebook">
+    <img src="facebook.jpg" alt="Facebook" style="width: 30px; height: 30px;">
+  </a>
+  <a href="#" aria-label="Visit our Twitter">
+    <img src="whatsapp3.jpg" alt="Twitter" style="width: 30px; height: 30px;">
+  </a>
+  <a href="#" aria-label="Visit our Instagram">
+    <img src="instagram.jpg" alt="Instagram" style="width: 30px; height: 30px;">
+  </a>
+</div>
+</p>
+    
+  </footer>
+
+  <script>
+    // JavaScript to handle showing similar products in flashcard on View More button click
+    document.querySelectorAll('.btn').forEach(button => {
+      button.addEventListener('click', function (event) {
+        const flashcard = this.nextElementSibling;
+        flashcard.style.display = flashcard.style.display === 'block' ? 'none' : 'block';
+        event.stopPropagation();  // Prevent click from propagating to the document
+      });
+    });
+
+    // Close the flashcard if clicked outside
+    document.addEventListener('click', function (event) {
+      const flashcards = document.querySelectorAll('.flashcard');
+      flashcards.forEach(flashcard => {
+        if (!flashcard.contains(event.target) && event.target !== flashcard.previousElementSibling) {
+          flashcard.style.display = 'none';
+        }
+      });
+    });
+
+// JavaScript to handle showing user profile in flashcard on Profile tab click
+document.querySelector('.profile-tab').addEventListener('click', function () {
+  const flashcard = document.querySelector('.profile-flashcard');
+  flashcard.style.display = flashcard.style.display === 'block' ? 'none' : 'block';
+});
+
+// Close the flashcard if clicked outside
+document.addEventListener('click', function (event) {
+  const flashcard = document.querySelector('.profile-flashcard');
+  if (!flashcard.contains(event.target) && event.target !== document.querySelector('.profile-tab')) {
+    flashcard.style.display = 'none';
+  }
+});
+
+  // Wait for the DOM to load
+  document.addEventListener('DOMContentLoaded', () => {
+    // Select the profile tab and the flashcard
+    const profileTab = document.querySelector('.profile-tab');
+    const profileFlashcard = document.querySelector('.profile-flashcard');
+
+    // Add a click event listener to the profile tab
+    profileTab.addEventListener('click', () => {
+      // Toggle the visibility of the flashcard
+      profileFlashcard.style.display = 
+        profileFlashcard.style.display === 'none' || profileFlashcard.style.display === '' 
+        ? 'block' 
+        : 'none';
+    });
+  });
+document.addEventListener("DOMContentLoaded", () => {
+    const profileTab = document.querySelector(".profile-tab");
+    const profileDropdown = document.querySelector(".profile-dropdown");
+
+    profileTab.addEventListener("click", () => {
+      profileDropdown.style.display =
+        profileDropdown.style.display === "block" ? "none" : "block";
+    });
+
+    // Hide dropdown if clicked outside
+    document.addEventListener("click", (event) => {
+      if (!profileTab.contains(event.target) && !profileDropdown.contains(event.target)) {
+        profileDropdown.style.display = "none";
+      }
+    });
+  });
+
+  </script>
+</body>
+</html>

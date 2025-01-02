@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopease</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .header .menu-icon, .header .notification-icon {
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .image-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .image-container img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+    }
+
+    .title {
+      font-size: 1.4em;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      font-size: 0.9em;
+      color: #666;
+      line-height: 1.5;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-bottom: 20px;
+    }
+
+    .carousel-dots .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #ddd;
+    }
+
+    .carousel-dots .dot.active {
+      background-color: #ff5722;
+    }
+
+    .get-started-btn {
+      display: block;
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto;
+      background: linear-gradient(to right, #ff5722, #ff8a50);
+      color: white;
+      font-size: 1em;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 25px;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .get-started-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .notification-icon.active {
+      color: #ff5722; /* Change icon color when active */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="menu-icon">☰</div>
+      <h1>SHOPEASE</h1>
+      <div class="notification-icon">🔔</div>
+    </div>
+
+    <!-- Image Section -->
+    <div class="image-container">
+      <img src="vending.jpg" alt="Vending Machine">
+    </div>
+
+    <!-- Title and Description -->
+    <div class="title">Discover Delicious Indian Snacks</div>
+    <div class="description">
+      SHOPEASE is your one-stop solution for vending machines stocked with a variety of Indian snacks. From crispy Lays chips to sweet chocolates and refreshing juices, we have it all.
+    </div>
+
+    <!-- Carousel Dots -->
+    <div class="carousel-dots">
+      <div class="dot"></div>
+      <div class="dot active"></div>
+      <div class="dot"></div>
+    </div>
+
+    <!-- Get Started Button -->
+    <a href="#" class="get-started-btn">Get Started</a>
+  </div>
+  <nav>
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+        <li><a href="threshold.html">Threshold Alerts</a></li>
+        <li><a href="updatestock.html">Restock</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Carousel Dot Navigation
+      const dots = document.querySelectorAll(".carousel-dots .dot");
+      let currentIndex = 1;
+      
+      function updateCarousel() {
+        dots.forEach((dot, index) => {
+          if (index === currentIndex) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      }
+      
+      setInterval(function () {
+        currentIndex = (currentIndex + 1) % dots.length; // Loop back to 0 after the last dot
+        updateCarousel();
+      }, 3000); // Change image every 3 seconds (adjust as necessary)
+
+      // Get Started Button Action (Redirect to login page)
+      const getStartedButton = document.querySelector(".get-started-btn");
+      getStartedButton.addEventListener("click", function (e) {
+        e.preventDefault();  // Prevent default link behavior
+        window.location.href = "login.html"; // Redirect to login page (replace with your actual login page URL)
+      });
+
+      // Notification Icon Toggle
+      const notificationIcon = document.querySelector(".notification-icon");
+      notificationIcon.addEventListener("click", function () {
+        notificationIcon.classList.toggle("active");
+        alert("Notification clicked!");
+      });
+
+      // Menu Icon Toggle (Simple example)
+      const menuIcon = document.querySelector(".menu-icon");
+      menuIcon.addEventListener("click", function () {
+        alert("Menu icon clicked!");
+        // You can toggle a menu here, for example, using a side navigation bar or a modal
+      });
+    });
+  </script>
+</body>
+</html>
